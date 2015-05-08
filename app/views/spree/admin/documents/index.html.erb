@@ -1,0 +1,29 @@
+<%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => "Documents"} %>
+
+<% content_for :page_actions do %>
+  <%= button_link_to(t(:new_document), new_admin_product_document_url(@product), { class: "btn-success", icon: 'add', id: 'new_idocument_link' }) %>
+<% end %>
+
+<table class="table sortable" data-sortable-link="<%= update_positions_admin_product_documents_url(@product) %>">
+  <thead>
+    <th>Sort</th>
+    <th>Name</th>
+    <th>Document</th>
+    <th></th>
+    <th></th>
+  <thead>
+
+  <% @product.documents.each do |document| %>
+    <tr id="<%= spree_dom_id(document) %>">
+      <td class="move-handle"><span class="icon icon-move handle"></span></td>
+      <td><%= document.name %></td>
+      <td><%= link_to document.attachment_file_name, document.attachment.url, target: :_blank %>
+      <td class="actions">
+        <%= link_to_with_icon('edit', t("edit"), edit_admin_product_document_url(@product, document), :class => 'edit') %>
+      </td>
+      <td>
+        <%= link_to_delete document, {:url => admin_product_document_url(@product, document) }%>
+      </td>
+    </tr>
+  <% end %>
+</table>
