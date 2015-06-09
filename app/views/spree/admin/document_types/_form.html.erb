@@ -6,5 +6,11 @@
       <%= f.text_field :name, class: 'form-control' %>
     </div>
 
+    <div data-hook="internal_name" class="form-group">
+      <%= f.label :internal_name, Spree.t(:internal_name) %>
+      <%= f.text_field :internal_name, class: 'form-control' %>
+      <p class="hint">Only change an existing internal name if you've checked with your developer!</p>
+    </div>
+
   </div>
 </div>
