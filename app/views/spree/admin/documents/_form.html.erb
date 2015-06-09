@@ -1,6 +1,12 @@
 <div data-hook="admin_document_form_fields" class="row">
   <div class="col-md-6">
-    <%= f.hidden_field :viewable_id, { value: @product.id } %>
+
+    <%= f.hidden_field :product_id, { value: @product.id } %>
+
+    <div data-hook="name" class="form-group">
+      <%= f.label :document_type_id, Spree.t(:document_type) %>
+      <%= f.select :document_type_id, options_for_select(@document_types.map { |dt| [dt.name, dt.id] }, @document.document_type), include_blank: true, class: 'form-control' %>
+    </div>
 
     <div data-hook="name" class="form-group">
       <%= f.label :name, Spree.t(:name) %>

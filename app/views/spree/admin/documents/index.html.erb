@@ -7,6 +7,7 @@
 <table class="table sortable" data-sortable-link="<%= update_positions_admin_product_documents_url(@product) %>">
   <thead>
     <th>Sort</th>
+    <th>Type</th>
     <th>Name</th>
     <th>Document</th>
     <th></th>
@@ -16,6 +17,7 @@
   <% @product.documents.each do |document| %>
     <tr id="<%= spree_dom_id(document) %>">
       <td class="move-handle"><span class="icon icon-move handle"></span></td>
+      <td><%= document.document_type_name %></td>
       <td><%= document.name %></td>
       <td><%= link_to document.attachment_file_name, document.attachment.url, target: :_blank %>
       <td class="actions">
