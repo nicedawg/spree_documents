@@ -1,0 +1,32 @@
+<% content_for :page_title do %>
+  <%= t(:document_types) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= button_link_to(t(:new_document_type), new_admin_document_type_url(), { class: "btn-success", icon: 'add', id: 'new_document_type_link' }) %>
+<% end %>
+
+<% if @document_types.any? %>
+  <table class="table">
+    <thead>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @document_types.each do |document_type| %>
+        <tr id="<%= spree_dom_id(document_type) %>">
+          <td><%= document_type.name %></td>
+          <td class="actions">
+            <%= link_to_with_icon('edit', t("edit"), edit_admin_document_type_url(document_type), :class => 'edit') %>
+          </td>
+          <td>
+            <%= link_to_delete document_type, {:url => admin_document_type_url(document_type) }%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  No document types.
+<% end %>

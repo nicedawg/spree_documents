@@ -2,9 +2,7 @@ module Spree
   module Admin
     class DocumentsController < ResourceController
       before_filter :load_product
-
-      create.before :set_viewable
-      update.before :set_viewable
+      before_filter :load_document_types
 
       private
         def location_after_destroy
@@ -19,9 +17,8 @@ module Spree
           @product = Product.friendly.find(params[:product_id])
         end
 
-        def set_viewable
-          @document.viewable_type = 'Spree::Product'
-          @document.viewable_id = params[:document][:viewable_id]
+        def load_document_types
+          @document_types = Spree::DocumentType.all
         end
     end
   end
